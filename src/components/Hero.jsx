@@ -1,89 +1,121 @@
 import React from 'react';
-import { Mail, ArrowRight, Download } from 'lucide-react';
+import { Mail, ArrowRight, Download, ChevronDown } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import MagneticButton from './lab/MagneticButton';
+import LabChamber from './lab/LabChamber';
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center pt-16 bg-bg-light relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-accent/5 blur-3xl" />
+    <section id="home" className="min-h-screen flex flex-col justify-center pt-16 relative overflow-hidden">
+      {/* Holographic grid floor */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-1/2 lab-grid-floor opacity-40"
+        style={{
+          transform: 'perspective(600px) rotateX(62deg)',
+          transformOrigin: 'bottom',
+          maskImage: 'linear-gradient(to top, black, transparent)',
+          WebkitMaskImage: 'linear-gradient(to top, black, transparent)',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Volumetric light beams */}
+      <div className="absolute top-10 right-1/4 w-96 h-96 rounded-full bg-glow/10 blur-3xl animate-float-slow lab-beam" />
+      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-primary/10 blur-3xl animate-float-slower lab-beam" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-          
-          <div className="flex-1 text-center md:text-left">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/20 text-primary mb-6">
-              <span className="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 lg:gap-6">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="text-center lg:text-left order-2 lg:order-1"
+          >
+            <motion.div variants={item} className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 border border-primary/25 text-primary mb-6">
+              <span className="w-2 h-2 rounded-full bg-glow mr-2 animate-pulse"></span>
               <span className="text-sm font-medium">Disponibilité immédiate</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold text-text-main mb-4 tracking-tight">
-              Bonjour, je suis <span className="text-primary">Nouhayla Machkouri</span>
-            </h1>
-            
-            <h2 className="text-xl md:text-3xl font-medium text-text-light mb-6">
+            </motion.div>
+
+            <motion.h1 variants={item} className="text-5xl md:text-6xl xl:text-7xl font-bold text-text-main mb-4 tracking-tight leading-[1.05]">
+              Bonjour, je suis <br className="hidden sm:block" />
+              <span className="text-gradient">Nouhayla Machkouri.</span>
+            </motion.h1>
+
+            <motion.h2 variants={item} className="text-xl md:text-2xl font-medium text-text-light mb-6">
               Développeuse Full Stack Java Junior
-            </h2>
-            
-            <p className="text-lg text-text-light max-w-2xl mx-auto md:mx-0 mb-8 leading-relaxed">
-              Titulaire d'une Licence en Ingénierie Électronique et formée chez Simplon, 
-              je conçois des architectures applicatives robustes avec <span className="font-semibold text-text-main">Spring Boot</span> et <span className="font-semibold text-text-main">React</span>.
+            </motion.h2>
+
+            <motion.p variants={item} className="text-base md:text-lg text-text-light max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+              Titulaire d'une Licence en Ingénierie Électronique et formée chez Simplon,
+              je conçois des architectures applicatives robustes avec <span className="font-semibold text-primary">Spring Boot</span> et <span className="font-semibold text-primary">React</span>.
               À la recherche d'une opportunité (Stage, CDI, Freelance).
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-10">
-              <a 
-                href="#projects" 
-                className="w-full sm:w-auto px-8 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors flex items-center justify-center group shadow-md shadow-accent/20"
+            </motion.p>
+
+            <motion.div variants={item} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+              <MagneticButton
+                as="a"
+                href="#projects"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-accent text-white font-semibold hover:bg-accent/90 transition-colors flex items-center justify-center group shadow-[0_0_30px_rgba(212,31,38,0.4)]"
               >
                 Voir mes projets
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a 
-                href="/cv/nouhayla_Machkouri_CV.pdf" 
+              </MagneticButton>
+              <MagneticButton
+                as="a"
+                href="/cv/nouhayla_Machkouri_CV.pdf"
                 target="_blank"
-                className="w-full sm:w-auto px-8 py-3 rounded-md border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors flex items-center justify-center group"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-lg border border-primary/40 text-primary font-semibold hover:border-primary hover:bg-primary/10 transition-colors flex items-center justify-center group"
               >
                 Consulter mon CV
                 <Download size={18} className="ml-2" />
-              </a>
-            </div>
-            
-            <div className="flex items-center justify-center md:justify-start space-x-6">
-              <a href="https://www.linkedin.com/in/nouhayla-machkouri-589217255" target="_blank" rel="noreferrer" className="text-text-light hover:text-primary transition-colors p-2 bg-white rounded-full shadow-sm hover:shadow-md">
-                <FaLinkedin size={24} />
+              </MagneticButton>
+            </motion.div>
+
+            <motion.div variants={item} className="flex items-center justify-center lg:justify-start space-x-4">
+              <a href="https://www.linkedin.com/in/nouhayla-machkouri-589217255" target="_blank" rel="noreferrer" className="text-text-light hover:text-primary hover:-translate-y-1 transition-all p-3 bg-surface-solid/60 border border-primary/15 rounded-full hover:border-primary/40">
+                <FaLinkedin size={22} />
                 <span className="sr-only">LinkedIn</span>
               </a>
-              <a href="https://github.com/noha20009" target="_blank" rel="noreferrer" className="text-text-light hover:text-primary transition-colors p-2 bg-white rounded-full shadow-sm hover:shadow-md">
-                <FaGithub size={24} />
+              <a href="https://github.com/noha20009" target="_blank" rel="noreferrer" className="text-text-light hover:text-primary hover:-translate-y-1 transition-all p-3 bg-surface-solid/60 border border-primary/15 rounded-full hover:border-primary/40">
+                <FaGithub size={22} />
                 <span className="sr-only">GitHub</span>
               </a>
-              <a href="mailto:machkourinouhayla@gmail.com" className="text-text-light hover:text-primary transition-colors p-2 bg-white rounded-full shadow-sm hover:shadow-md">
-                <Mail size={24} />
+              <a href="mailto:machkourinouhayla@gmail.com" className="text-text-light hover:text-primary hover:-translate-y-1 transition-all p-3 bg-surface-solid/60 border border-primary/15 rounded-full hover:border-primary/40">
+                <Mail size={22} />
                 <span className="sr-only">Email</span>
               </a>
-            </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Containment chamber */}
+          <div className="order-1 lg:order-2 w-full flex justify-center">
+            <LabChamber />
           </div>
-          
-          <div className="flex-1 w-full max-w-md hidden md:block">
-            {/* Si aucune photo n'est fournie, on peut utiliser un motif géométrique ou une illustration avec les couleurs */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl transform translate-x-4 translate-y-4"></div>
-              <div className="relative aspect-square bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-24 h-24 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 transform -rotate-6">
-                    <span className="text-4xl font-bold">&lt;/&gt;</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-text-main mb-2">Code & Data</h3>
-                  <p className="text-text-light">Construire des solutions logicielles performantes et fiables.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          
         </div>
       </div>
+
+      <motion.a
+        href="#about"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.6 }}
+        className="hidden sm:flex flex-col items-center text-text-light hover:text-primary transition-colors mx-auto mb-6 mt-4 relative z-10"
+        aria-label="Défiler vers le bas"
+      >
+        <span className="text-xs font-medium mb-1">Découvrir</span>
+        <ChevronDown size={20} className="animate-bounce-soft" />
+      </motion.a>
     </section>
   );
 };

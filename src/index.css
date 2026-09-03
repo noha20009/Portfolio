@@ -1,18 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand colours preserved */
-  --color-primary: #96DABE;
-  --color-accent: #D41F26;
-  /* Dark laboratory surfaces */
-  --color-base: #060A09;
-  --color-bg-light: #0B110F;
-  --color-surface: #10171400;
-  --color-surface-solid: #111A16;
-  --color-text-main: #ECFDF5;
-  --color-text-light: #8FA69C;
-  /* Brighter emerald used only for glow accents */
-  --color-glow: #34E5A0;
+  --font-headline: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Palette imposée par le design light glassmorphique */
+  --color-accent: #FF0000;
+  --color-secondary: #516162;
+  --color-tertiary: #4a6267;
+  --color-on-surface: #1c1b1b;
+  --color-on-surface-variant: #444748;
+  --color-background: #F5F5F5;
+  --color-surface: #fcf8f8;
+  --color-surface-container: #f1edec;
+  --color-surface-container-low: #f6f3f2;
+  --color-surface-container-high: #ebe7e7;
+  --color-surface-container-highest: #e5e2e1;
+  --color-primary: #5d5f5f;
+  --color-glass-border: #BBD5DA;
+  --color-secondary-tint: #DFF1F1;
+  --color-error: #ba1a1a;
 }
 
 html {
@@ -20,50 +27,110 @@ html {
 }
 
 body {
-  @apply bg-base text-text-main font-sans antialiased;
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(52, 229, 160, 0.10), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 100% 0%, rgba(150, 218, 190, 0.06), transparent 55%);
-  background-attachment: fixed;
+  background-color: #F5F5F5;
+  color: #1c1b1b;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: var(--color-primary);
-  color: #04110B;
+  background-color: #FF0000;
+  color: #ffffff;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B110F;
+  background: #F5F5F5;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
+  background: #BBD5DA;
   border-radius: 999px;
-  border: 2px solid #0B110F;
+  border: 2px solid #F5F5F5;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-glow);
+  background: #FF0000;
 }
 
-/* Gradient text */
-.text-gradient {
-  background: linear-gradient(90deg, var(--color-primary), var(--color-glow) 50%, var(--color-primary));
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient-shift 6s ease-in-out infinite;
-  filter: drop-shadow(0 0 18px rgba(52, 229, 160, 0.25));
+/* ---------- Glassmorphism ---------- */
+
+.glass-card {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
 }
 
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% center; }
-  50% { background-position: 100% center; }
+.glass-card:hover {
+  border-color: #FF0000;
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px -12px rgba(255, 0, 0, 0.15);
 }
 
-/* Floating blobs */
+/* Diagonal shine sweep on hover (project cards) */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+.card-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+.card-shine:hover::after {
+  left: 160%;
+}
+
+.glass-panel {
+  background-color: rgba(223, 241, 241, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #BBD5DA;
+  box-shadow: 0 8px 30px rgba(187, 213, 218, 0.3);
+}
+
+.glass-nav {
+  background-color: rgba(81, 97, 98, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #BBD5DA;
+}
+
+.tech-chip {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: #1c1b1b;
+  backdrop-filter: blur(4px);
+}
+
+/* Angular HUD crop used on cards */
+.clip-hud {
+  clip-path: polygon(
+    14px 0, 100% 0, 100% calc(100% - 14px),
+    calc(100% - 14px) 100%, 0 100%, 0 14px
+  );
+}
+
+/* Bouncing scroll cue */
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+.animate-bounce-soft {
+  animation: bounce-soft 2s ease-in-out infinite;
+}
+
+/* Floating blobs for decorative backgrounds */
 @keyframes float-slow {
   0%, 100% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(20px, -30px) scale(1.05); }
@@ -79,287 +146,32 @@ body {
   animation: float-slower 12s ease-in-out infinite;
 }
 
-/* Dot grid background */
-.bg-dot-grid {
-  background-image: radial-gradient(currentColor 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Bouncing scroll cue */
-@keyframes bounce-soft {
-  0%, 100% { transform: translateY(0); opacity: 0.5; }
-  50% { transform: translateY(8px); opacity: 1; }
-}
-.animate-bounce-soft {
-  animation: bounce-soft 2s ease-in-out infinite;
-}
-
-/* Glow pulse for timeline dots */
-@keyframes pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(150, 218, 190, 0.6); }
-  100% { box-shadow: 0 0 0 12px rgba(150, 218, 190, 0); }
-}
-.animate-pulse-ring {
-  animation: pulse-ring 2s ease-out infinite;
-}
-
-/* ---------- Digital Laboratory theme ---------- */
-
-/* Focus ring, consistent everywhere */
-a:focus-visible,
-button:focus-visible,
-[tabindex]:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* Glass panel ambient glow + hairline holographic border */
-.lab-panel-glow {
-  position: relative;
-  border-radius: inherit;
-}
-.lab-panel-glow::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(120deg, rgba(52, 229, 160, 0.7), rgba(150, 218, 190, 0.05), rgba(212, 31, 38, 0.35));
-  background-size: 220% 220%;
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  animation: holo-border 8s ease infinite;
-  opacity: 0.8;
-}
-@keyframes holo-border {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* Slow scanning sweep, used sparingly (terminal headers, preloader) */
-.lab-scanline {
-  position: relative;
-  overflow: hidden;
-}
-.lab-scanline::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(150, 218, 190, 0.14) 45%, transparent 90%);
-  transform: translateY(-100%);
-  animation: scan-sweep 5s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes scan-sweep {
-  0% { transform: translateY(-100%); }
-  55%, 100% { transform: translateY(100%); }
-}
-
-/* Holographic grid floor (hero) */
-.lab-grid-floor {
-  background-image:
-    linear-gradient(rgba(150, 218, 190, 0.16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(150, 218, 190, 0.16) 1px, transparent 1px);
-  background-size: 42px 42px;
-  animation: grid-drift 24s linear infinite;
-}
-@keyframes grid-drift {
-  0% { background-position: 0 0, 0 0; }
-  100% { background-position: 0 420px, 420px 0; }
-}
-
-/* Slow volumetric light beam */
-@keyframes beam-pulse {
-  0%, 100% { opacity: 0.15; transform: translateY(0) scaleY(1); }
-  50% { opacity: 0.3; transform: translateY(-12px) scaleY(1.04); }
-}
-.lab-beam {
-  animation: beam-pulse 7s ease-in-out infinite;
-}
-
-/* Energy pulse for icons / nodes */
-@keyframes energy-pulse {
-  0%, 100% { filter: drop-shadow(0 0 0 rgba(150, 218, 190, 0)); }
-  50% { filter: drop-shadow(0 0 6px rgba(150, 218, 190, 0.8)); }
-}
-.lab-energy-pulse {
-  animation: energy-pulse 2.4s ease-in-out infinite;
-}
-
-/* Flowing energy line for DNA skill strands */
-.lab-strand-flow {
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(150, 218, 190, 0.9) 0px,
-    rgba(150, 218, 190, 0.9) 2px,
-    transparent 2px,
-    transparent 14px
-  );
-  background-size: 100% 28px;
-  animation: strand-flow 3s linear infinite;
-  opacity: 0.8;
-}
-@keyframes strand-flow {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 28px; }
-}
-
-/* Particle wisps escaping project chambers on hover */
-@keyframes wisp-rise {
-  0% { transform: translateY(0) scale(1); opacity: 0; }
-  15% { opacity: 0.9; }
-  100% { transform: translateY(-46px) scale(0.4); opacity: 0; }
-}
-
-/* ---------- Hero containment chamber ---------- */
-
-/* Angular HUD panel corners, like the inspiration cards */
-.clip-hud {
-  clip-path: polygon(
-    14px 0, 100% 0, 100% calc(100% - 14px),
-    calc(100% - 14px) 100%, 0 100%, 0 14px
-  );
-}
-
-/* Circuit background lines behind the chamber */
-.lab-circuit {
-  background-image:
-    linear-gradient(rgba(52, 229, 160, 0.10) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(52, 229, 160, 0.10) 1px, transparent 1px);
-  background-size: 34px 34px;
-  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent 75%);
-}
-
-/* 3D rotating DNA double helix */
-.dna {
-  position: relative;
-  width: 150px;
-  height: 100%;
-  transform-style: preserve-3d;
-  perspective: 900px;
-}
-.dna-rung {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transform-style: preserve-3d;
-  animation: dna-spin 4s linear infinite;
-}
-.dna-rung::before {
-  content: '';
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  top: 50%;
-  height: 2px;
-  transform: translateY(-50%);
-  background: linear-gradient(90deg, rgba(52, 229, 160, 0.15), rgba(52, 229, 160, 0.75), rgba(52, 229, 160, 0.15));
-}
-.dna-node {
-  width: 11px;
-  height: 11px;
-  border-radius: 999px;
-  background: var(--color-glow);
-  box-shadow: 0 0 10px 2px rgba(52, 229, 160, 0.8);
-}
-.dna-node.accent {
-  background: #7fe9c4;
-}
-@keyframes dna-spin {
-  from { transform: rotateY(0deg); }
-  to { transform: rotateY(360deg); }
-}
-
-/* Glass tube reflections */
-.tube-glass {
-  background:
-    linear-gradient(90deg,
-      rgba(255,255,255,0.10) 0%,
-      rgba(255,255,255,0.02) 18%,
-      rgba(52,229,160,0.03) 50%,
-      rgba(255,255,255,0.02) 82%,
-      rgba(255,255,255,0.12) 100%);
-}
-
-/* Rising bubbles inside the chamber */
-@keyframes bubble-rise {
-  0% { transform: translateY(0) scale(1); opacity: 0; }
-  20% { opacity: 0.8; }
-  100% { transform: translateY(-260px) scale(0.5); opacity: 0; }
-}
-
-/* Slow rotating base glow ring */
+/* Rotating ring */
 @keyframes ring-rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 .animate-ring-rotate { animation: ring-rotate 14s linear infinite; }
+@keyframes ring-rotate-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+.animate-ring-rotate-reverse { animation: ring-rotate-reverse 20s linear infinite; }
 
-/* Sparkline draw */
-@keyframes sparkline-draw {
-  from { stroke-dashoffset: 300; }
-  to { stroke-dashoffset: 0; }
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #FF0000;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
-
-/* ---------- Global ambient background ---------- */
-.bg-grid-fixed {
-  background-image:
-    linear-gradient(rgba(52, 229, 160, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(52, 229, 160, 0.05) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-@keyframes aurora-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(9%, 7%) scale(1.12); }
-}
-@keyframes aurora-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-8%, -6%) scale(1.06); }
-}
-@keyframes aurora-3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(6%, -9%) scale(1.1); }
-}
-.animate-aurora-1 { animation: aurora-1 20s ease-in-out infinite; }
-.animate-aurora-2 { animation: aurora-2 25s ease-in-out infinite; }
-.animate-aurora-3 { animation: aurora-3 30s ease-in-out infinite; }
-
-/* Slow vertical drift of the ambient grid */
-@keyframes grid-scroll {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 480px; }
-}
-.animate-grid-scroll { animation: grid-scroll 40s linear infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .lab-panel-glow::before,
-  .lab-scanline::after,
-  .lab-grid-floor,
-  .lab-beam,
-  .lab-energy-pulse,
-  .lab-strand-flow,
-  [class*="wisp-rise"],
-  .dna-rung,
-  .animate-ring-rotate,
-  .animate-aurora-1,
-  .animate-aurora-2,
-  .animate-aurora-3,
-  .animate-grid-scroll,
   .animate-float-slow,
   .animate-float-slower,
   .animate-bounce-soft,
-  .animate-pulse-ring,
-  .text-gradient {
+  .animate-ring-rotate {
     animation: none !important;
   }
 }

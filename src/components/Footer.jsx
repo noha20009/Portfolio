@@ -1,20 +1,47 @@
 import React from 'react';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#04080699] text-text-main py-8 border-t border-primary/25 overflow-hidden">
-      <div className="absolute inset-0 text-primary/[0.04] bg-dot-grid pointer-events-none" aria-hidden="true" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative flex flex-col md:flex-row items-center justify-between gap-2">
-        <div className="mb-4 md:mb-0 flex items-center gap-3">
-          <a href="#home" className="text-2xl font-bold hover:text-primary transition-colors">NM<span className="text-primary">.</span></a>
-          <span className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-gray-500">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-            Fin de transmission
-          </span>
+    <footer className="bg-white/50 backdrop-blur-lg text-on-surface-variant py-12 border-t border-white/40 mt-24 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <a href="#home" className="flex items-center gap-2">
+            <span className="text-2xl font-bold text-on-surface font-headline">
+              NM<span className="text-accent">.dev</span>
+            </span>
+          </a>
+
+          <div className="flex items-center gap-6">
+            <a
+              href="https://www.linkedin.com/in/nouhayla-machkouri-589217255"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 text-on-surface-variant hover:text-accent transition-colors text-sm font-medium"
+            >
+              <FaLinkedin size={16} /> LinkedIn
+            </a>
+            <a
+              href="https://github.com/noha20009"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 text-on-surface-variant hover:text-accent transition-colors text-sm font-medium"
+            >
+              <FaGithub size={16} /> GitHub
+            </a>
+            <a
+              href="mailto:machkourinouhayla@gmail.com"
+              className="flex items-center gap-1.5 text-on-surface-variant hover:text-accent transition-colors text-sm font-medium"
+            >
+              <Mail size={16} /> Mail
+            </a>
+          </div>
+
+          <div className="text-sm text-center md:text-right">
+            © {new Date().getFullYear()} Nouhayla Machkouri. Tous droits réservés.
+          </div>
         </div>
-        <p className="text-gray-400 text-sm">
-          © {new Date().getFullYear()} Nouhayla Machkouri. Tous droits réservés.
-        </p>
       </div>
     </footer>
   );

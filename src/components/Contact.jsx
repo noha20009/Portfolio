@@ -1,80 +1,191 @@
-import React from 'react';
-import { Mail, MapPin, Download } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, MapPin, Download, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import Reveal, { StaggerGroup, StaggerItem } from './Reveal';
-import GlassPanel from './lab/GlassPanel';
-import TiltCard from './lab/TiltCard';
-import TransmitButton from './lab/TransmitButton';
+import Reveal from './Reveal';
+
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT;
 
 const Contact = () => {
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!FORMSPREE_ENDPOINT) {
+      setStatus('error');
+      return;
+    }
+
+    setStatus('submitting');
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus('success');
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
+
   return (
     <section id="contact" className="py-20 relative overflow-hidden">
-      <div className="absolute top-0 left-1/3 w-72 h-72 rounded-full bg-accent/5 blur-3xl lab-beam pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <Reveal className="text-center mb-16">
-          <span className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-primary/80 mb-3">
-            Terminal de communication
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">Contactez-moi</h2>
-          <div className="w-20 h-1 bg-accent mx-auto rounded-full mb-6"></div>
-          <p className="text-lg text-text-light">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <Reveal className="mb-12">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-on-surface mb-2 font-headline">
+            Contact
+          </h2>
+          <div className="w-16 h-1 bg-accent rounded-full shadow-[0_0_10px_rgba(255,0,0,0.5)]" />
+          <p className="text-lg text-on-surface-variant mt-4 max-w-2xl">
             Je suis actuellement à l'écoute de nouvelles opportunités. N'hésitez pas à me contacter !
           </p>
         </Reveal>
 
-        <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 gap-8" stagger={0.15}>
-          <StaggerItem>
-            <TiltCard maxTilt={5} className="group h-full rounded-2xl">
-              <GlassPanel className="h-full p-8 rounded-2xl flex flex-col items-center justify-center text-center hover:shadow-lg hover:shadow-primary/5 transition-shadow duration-300 lab-scanline">
-                <div className="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 lab-energy-pulse">
-                  <Mail size={32} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Left column: info cards + socials */}
+          <div className="flex flex-col gap-6">
+            <Reveal>
+              <div className="glass-card p-6 rounded-lg flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-accent shrink-0">
+                  <Mail size={22} />
                 </div>
-                <span className="text-[10px] font-mono text-text-light/40 tracking-widest mb-2">CANAL_01 · EMAIL</span>
-                <h3 className="text-xl font-bold text-text-main mb-2">Email</h3>
-                <p className="text-text-light mb-6">Pour toute demande professionnelle</p>
-                <a href="mailto:machkourinouhayla@gmail.com" className="text-primary font-bold hover:underline">
-                  machkourinouhayla@gmail.com
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold text-on-surface-variant mb-1">Email</p>
+                  <a href="mailto:machkourinouhayla@gmail.com" className="text-on-surface hover:text-accent transition-colors font-medium truncate block">
+                    machkourinouhayla@gmail.com
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="glass-card p-6 rounded-lg flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center text-tertiary shrink-0">
+                  <MapPin size={22} />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-on-surface-variant mb-1">Localisation</p>
+                  <p className="text-on-surface font-medium">Béni Mellal, Maroc</p>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.15}>
+              <div className="glass-card p-6 rounded-lg flex flex-col gap-4">
+                <p className="text-on-surface font-semibold">Retrouvez-moi sur</p>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="https://www.linkedin.com/in/nouhayla-machkouri-589217255"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-4 py-2.5 bg-white/60 border border-glass-border rounded-lg text-on-surface hover:text-accent hover:border-accent transition-colors text-sm font-medium"
+                  >
+                    <FaLinkedin size={18} /> LinkedIn
+                  </a>
+                  <a
+                    href="https://github.com/noha20009"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-4 py-2.5 bg-white/60 border border-glass-border rounded-lg text-on-surface hover:text-accent hover:border-accent transition-colors text-sm font-medium"
+                  >
+                    <FaGithub size={18} /> GitHub
+                  </a>
+                </div>
+                <a
+                  href="/cv/nouhayla_Machkouri_CV.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-accent text-white rounded-lg text-xs font-semibold uppercase tracking-wide hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/20 active:scale-95 self-start"
+                >
+                  <Download size={16} /> Mon CV complet
                 </a>
-              </GlassPanel>
-            </TiltCard>
-          </StaggerItem>
-
-          <StaggerItem>
-            <TiltCard maxTilt={5} className="group h-full rounded-2xl">
-              <GlassPanel className="h-full p-8 rounded-2xl flex flex-col items-center justify-center text-center hover:shadow-lg hover:shadow-primary/5 transition-shadow duration-300">
-                <div className="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 lab-energy-pulse">
-                  <MapPin size={32} />
-                </div>
-                <span className="text-[10px] font-mono text-text-light/40 tracking-widest mb-2">CANAL_02 · LOCALISATION</span>
-                <h3 className="text-xl font-bold text-text-main mb-2">Localisation</h3>
-                <p className="text-text-light mb-2">Béni Mellal, Maroc</p>
-                <p className="text-sm font-bold text-accent bg-accent/10 px-3 py-1 rounded-full">Mobilité géographique</p>
-              </GlassPanel>
-            </TiltCard>
-          </StaggerItem>
-        </StaggerGroup>
-
-        <Reveal delay={0.2} className="mt-12 text-center flex flex-col md:flex-row items-center justify-center gap-6">
-          <TransmitButton
-            href="/cv/nouhayla_Machkouri_CV.pdf"
-            target="_blank"
-            transmittingLabel="Ouverture du dossier…"
-            className="px-8 py-3 rounded-md bg-accent text-white font-medium hover:bg-accent/90 transition-colors shadow-md shadow-accent/20"
-          >
-            Télécharger mon CV complet
-            <Download size={20} className="ml-2" />
-          </TransmitButton>
-
-          <div className="flex items-center gap-4">
-            <a href="https://www.linkedin.com/in/nouhayla-machkouri-589217255" target="_blank" rel="noreferrer" className="p-3 bg-surface-solid/60 border border-primary/15 rounded-full text-text-main hover:text-primary hover:border-primary hover:-translate-y-1 transition-all">
-              <FaLinkedin size={24} />
-            </a>
-            <a href="https://github.com/noha20009" target="_blank" rel="noreferrer" className="p-3 bg-surface-solid/60 border border-primary/15 rounded-full text-text-main hover:text-primary hover:border-primary hover:-translate-y-1 transition-all">
-              <FaGithub size={24} />
-            </a>
+              </div>
+            </Reveal>
           </div>
-        </Reveal>
+
+          {/* Right column: minimalist form */}
+          <Reveal delay={0.1}>
+            <div className="glass-card p-6 rounded-lg">
+              <h3 className="text-xl font-bold text-on-surface mb-6 font-headline">Envoyer un message</h3>
+              <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+                <div>
+                  <input
+                    name="name"
+                    required
+                    value={form.name}
+                    onChange={handleChange}
+                    className="w-full border-b border-tertiary/40 bg-transparent py-2 text-on-surface focus:outline-none focus:ring-0 focus:border-accent transition-colors font-body placeholder:text-on-surface-variant/60"
+                    placeholder="Nom complet"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <input
+                    name="email"
+                    required
+                    value={form.email}
+                    onChange={handleChange}
+                    className="w-full border-b border-tertiary/40 bg-transparent py-2 text-on-surface focus:outline-none focus:ring-0 focus:border-accent transition-colors font-body placeholder:text-on-surface-variant/60"
+                    placeholder="Adresse email"
+                    type="email"
+                  />
+                </div>
+                <div>
+                  <textarea
+                    name="message"
+                    required
+                    value={form.message}
+                    onChange={handleChange}
+                    className="w-full border-b border-tertiary/40 bg-transparent py-2 text-on-surface focus:outline-none focus:ring-0 focus:border-accent transition-colors resize-none font-body placeholder:text-on-surface-variant/60"
+                    placeholder="Votre message"
+                    rows="3"
+                  />
+                </div>
+
+                {status === 'success' && (
+                  <div className="flex items-center gap-2 text-sm font-medium text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-3">
+                    <CheckCircle2 size={18} /> Votre message a bien été envoyé ! Merci.
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div className="flex items-center gap-2 text-sm font-medium text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+                    <AlertCircle size={18} />
+                    {FORMSPREE_ENDPOINT
+                      ? "Une erreur est survenue. Veuillez réessayer."
+                      : "Le formulaire n'est pas configuré. Contactez-moi par email : machkourinouhayla@gmail.com"}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === 'submitting'}
+                  className="inline-flex items-center justify-center gap-2 bg-accent text-white py-3 px-6 rounded text-xs font-semibold uppercase tracking-wider hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/20 active:scale-95 self-start disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
+                >
+                  {status === 'submitting' ? (
+                    <>
+                      <Loader2 size={14} className="animate-spin" /> Envoi…
+                    </>
+                  ) : (
+                    <>
+                      Envoyer <Send size={14} />
+                    </>
+                  )}
+                </button>
+              </form>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

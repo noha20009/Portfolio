@@ -1,70 +1,100 @@
 import React from 'react';
-import { GraduationCap, Code2, Rocket } from 'lucide-react';
-import Reveal, { StaggerGroup, StaggerItem } from './Reveal';
-import GlassPanel from './lab/GlassPanel';
-import TiltCard from './lab/TiltCard';
+import { GraduationCap, Code2, Bolt, FolderGit2, Terminal, Briefcase } from 'lucide-react';
+import Reveal from './Reveal';
+import AnimatedCounter from './lab/AnimatedCounter';
 
 const stats = [
-  {
-    icon: <GraduationCap className="text-primary" size={28} />,
-    title: 'Licence Électronique & Télécom',
-    desc: 'Faculté des Sciences et Techniques, Béni Mellal',
-  },
-  {
-    icon: <Code2 className="text-primary" size={28} />,
-    title: 'Full Stack Java / Spring Boot',
-    desc: 'Formation intensive chez Simplon Maghreb',
-  },
-  {
-    icon: <Rocket className="text-primary" size={28} />,
-    title: "Prête pour l'action",
-    desc: 'Stage, CDI ou Freelance — disponibilité immédiate',
-  },
+  { icon: <FolderGit2 size={22} />, to: 10, suffix: '+', label: 'Projets réalisés' },
+  { icon: <Terminal size={22} />, to: 20, suffix: '+', label: 'Compétences techniques' },
+  { icon: <Briefcase size={22} />, to: 2, suffix: '', label: 'Années de formation' },
 ];
 
 const About = () => {
   return (
     <section id="about" className="py-20 relative overflow-hidden">
-      <div className="absolute -top-24 right-0 w-72 h-72 rounded-full bg-primary/5 blur-3xl lab-beam pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <Reveal className="text-center mb-4">
-          <span className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-primary/80 mb-3">
-            Salle de recherche
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">À propos de moi</h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+        <Reveal className="text-center md:text-left mb-12">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-on-surface mb-2 font-headline">
+            À propos de moi
+          </h2>
+          <div className="w-16 h-1 bg-accent rounded-full shadow-[0_0_10px_rgba(255,0,0,0.5)] mx-auto md:mx-0" />
         </Reveal>
 
-        <Reveal delay={0.1} className="max-w-3xl mx-auto mb-14 mt-12">
-          <GlassPanel className="rounded-2xl p-8 md:p-10 text-lg text-text-light leading-relaxed text-center">
-            <p className="mb-6">
-              Titulaire d'une <strong className="text-text-main">Licence en Ingénierie Électronique et Télécommunications</strong> de la Faculté des sciences et techniques de Béni Mellal, et formée en développement Full Stack chez Simplon Maghreb.
-            </p>
-            <p className="mb-6">
-              Je suis passionnée par la conception d'architectures applicatives robustes et la gestion de bases de données complexes. Mon parcours hybride entre l'électronique et le logiciel me dote d'une forte rigueur analytique.
-            </p>
-            <p>
-              Maîtrisant l'écosystème <strong className="text-text-main">Java / Spring Boot</strong> ainsi que <strong className="text-text-main">React</strong> pour le frontend, je souhaite aujourd'hui mettre mes compétences au service de projets ambitieux, notamment dans la conception d'API performantes et d'interfaces modernes.
-            </p>
-          </GlassPanel>
-        </Reveal>
-
-        <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {stats.map((stat, idx) => (
-            <StaggerItem key={idx}>
-              <TiltCard maxTilt={7} className="group h-full rounded-xl">
-                <GlassPanel glow={false} className="h-full rounded-xl p-6 text-center hover:shadow-lg hover:shadow-primary/5 transition-shadow duration-300">
-                  <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110">
-                    {stat.icon}
+        {/* Animated stats */}
+        <Reveal className="mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {stats.map((stat, idx) => (
+              <div
+                key={stat.label}
+                className="glass-card rounded-2xl p-6 flex items-center gap-4 group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center text-tertiary transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  {stat.icon}
+                </div>
+                <div>
+                  <div className="text-3xl font-extrabold text-on-surface font-headline leading-none">
+                    <AnimatedCounter
+                      to={stat.to}
+                      suffix={stat.suffix}
+                      duration={1600 + idx * 200}
+                    />
                   </div>
-                  <h3 className="font-bold text-text-main mb-1">{stat.title}</h3>
-                  <p className="text-sm text-text-light">{stat.desc}</p>
-                </GlassPanel>
-              </TiltCard>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+                  <div className="text-sm text-on-surface-variant mt-1">{stat.label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Card 1: Licence */}
+          <Reveal className="glass-card rounded-[1.5rem] p-8 flex flex-col items-start gap-4 group">
+            <div className="w-12 h-12 rounded-lg bg-teal-100 flex items-center justify-center text-tertiary mb-2 transition-transform duration-300 group-hover:scale-110">
+              <GraduationCap size={26} />
+            </div>
+            <h3 className="text-xl font-bold text-on-surface">Licence Électronique &amp; Télécom</h3>
+            <p className="text-on-surface-variant">
+              Une base solide en logique et résolution de problèmes complexes, développant ma rigueur analytique essentielle au développement logiciel.
+            </p>
+          </Reveal>
+
+          {/* Card 2: Formation Full Stack (larger) */}
+          <Reveal delay={0.1} className="glass-card rounded-[1.5rem] p-8 flex flex-col items-start gap-4 md:col-span-2 group relative overflow-hidden">
+            <div className="absolute right-0 top-0 w-32 h-32 bg-red-100 rounded-bl-full blur-xl opacity-70" />
+            <div className="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary mb-2 transition-transform duration-300 group-hover:scale-110">
+              <Code2 size={26} />
+            </div>
+            <h3 className="text-xl font-bold text-on-surface">Formation Full Stack Java</h3>
+            <p className="text-on-surface-variant mb-4">
+              Reconversion intensive et certifiante chez Simplon. Maîtrise de l'écosystème Java (Spring Boot), du développement front-end moderne (React), et des pratiques de développement collaboratif (Git, Agile).
+            </p>
+            <div className="flex flex-wrap gap-2 mt-auto">
+              {['Java', 'Spring Boot', 'SQL', 'React'].map((t) => (
+                <span key={t} className="px-3 py-1.5 bg-white/60 border border-glass-border rounded-full text-xs font-semibold text-secondary">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Card 3: Prête pour l'action (full width) */}
+          <Reveal delay={0.15} className="glass-card rounded-[1.5rem] p-8 flex flex-col items-center justify-center text-center gap-4 md:col-span-3 group">
+            <div className="w-14 h-14 flex items-center justify-center">
+              <Bolt className="text-accent" size={42} />
+            </div>
+            <h3 className="text-2xl font-bold text-on-surface">Prête pour l'action</h3>
+            <p className="text-on-surface-variant max-w-2xl">
+              Aujourd'hui, je suis prête à mettre mes compétences au service d'une équipe dynamique. Je recherche des défis stimulants où je pourrai contribuer à des projets innovants tout en continuant à apprendre et à grandir professionnellement.
+            </p>
+            <a
+              href="#contact"
+              className="mt-2 px-6 py-2.5 bg-accent text-white rounded-lg text-xs font-semibold uppercase tracking-wide hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/20 active:scale-95"
+            >
+              Me contacter
+            </a>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

@@ -15,7 +15,7 @@ const Contact = () => {
     e.preventDefault();
     const subject = encodeURIComponent(`Contact depuis le portfolio - ${form.name}`);
     const body = encodeURIComponent(`Nom: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
-    window.location.href = `mailto:machkourinouhayla@gmail.com?subject=${subject}&body=${body}`;
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=machkourinouhayla@gmail.com&su=${subject}&body=${body}`, '_blank');
     setStatus('success');
     setForm({ name: '', email: '', message: '' });
   };
@@ -43,7 +43,7 @@ const Contact = () => {
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs font-semibold text-on-surface-variant mb-1">Email</p>
-                  <a href="mailto:machkourinouhayla@gmail.com" className="text-on-surface hover:text-accent transition-colors font-medium truncate block">
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=machkourinouhayla@gmail.com" target="_blank" rel="noreferrer" className="text-on-surface hover:text-accent transition-colors font-medium truncate block">
                     machkourinouhayla@gmail.com
                   </a>
                 </div>
@@ -135,7 +135,7 @@ const Contact = () => {
 
                 {status === 'success' && (
                   <div className="flex items-center gap-2 text-sm font-medium text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-3">
-                    <CheckCircle2 size={18} /> Votre client email s'est ouvert avec votre message !
+                    <CheckCircle2 size={18} /> Gmail s'est ouvert avec votre message !
                   </div>
                 )}
 

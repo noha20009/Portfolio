@@ -83,7 +83,7 @@ const Hero = () => {
                 <FaGithub size={20} />
                 <span className="sr-only">GitHub</span>
               </a>
-              <a href="mailto:machkourinouhayla@gmail.com" className="w-11 h-11 rounded-full glass-panel flex items-center justify-center text-secondary hover:text-accent hover:-translate-y-1 transition-all">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=machkourinouhayla@gmail.com" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full glass-panel flex items-center justify-center text-secondary hover:text-accent hover:-translate-y-1 transition-all">
                 <Mail size={20} />
                 <span className="sr-only">Email</span>
               </a>
@@ -124,6 +124,21 @@ const Hero = () => {
             </div>
             <div className="absolute right-1/4 -top-4 px-4 py-2 rounded-full glass-panel text-xs font-semibold flex items-center gap-2 animate-float-slower">
               <div className="w-2 h-2 rounded-full bg-tertiary" /> Git
+            </div>
+            <div className="absolute -right-6 bottom-[12%] px-4 py-2 rounded-full glass-panel text-xs font-semibold flex items-center gap-2 animate-float-slow">
+              <div className="w-2 h-2 rounded-full bg-accent" /> Spring Data JPA
+            </div>
+            <div className="absolute left-[5%] top-[8%] px-4 py-2 rounded-full glass-panel text-xs font-semibold flex items-center gap-2 animate-float-slower">
+              <div className="w-2 h-2 rounded-full bg-secondary" /> JavaScript
+            </div>
+            <div className="absolute -left-12 bottom-[48%] px-4 py-2 rounded-full glass-panel text-xs font-semibold flex items-center gap-2 animate-float-slow">
+              <div className="w-2 h-2 rounded-full bg-tertiary" /> API REST
+            </div>
+            <div className="absolute right-[5%] bottom-[5%] px-4 py-2 rounded-full glass-panel text-xs font-semibold flex items-center gap-2 animate-float-slower">
+              <div className="w-2 h-2 rounded-full bg-accent" /> Spring Security
+            </div>
+            <div className="absolute left-[8%] bottom-[8%] px-4 py-2 rounded-full glass-panel text-xs font-semibold flex items-center gap-2 animate-float-slow">
+              <div className="w-2 h-2 rounded-full bg-secondary" /> Figma
             </div>
 
           </motion.div>

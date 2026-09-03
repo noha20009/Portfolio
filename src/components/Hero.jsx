@@ -66,8 +66,7 @@ const Hero = () => {
               </a>
               <a
                 href="/cv/nouhayla_Machkouri_CV.pdf"
-                target="_blank"
-                rel="noreferrer"
+                download="nouhayla_Machkouri_CV.pdf"
                 className="w-full sm:w-auto px-8 py-3.5 rounded-lg border border-glass-border bg-surface text-secondary font-semibold hover:border-accent hover:text-accent transition-colors flex items-center justify-center group"
               >
                 Consulter mon CV
@@ -126,18 +125,7 @@ const Hero = () => {
             <div className="absolute right-1/4 -top-4 px-4 py-2 rounded-full glass-panel text-xs font-semibold flex items-center gap-2 animate-float-slower">
               <div className="w-2 h-2 rounded-full bg-tertiary" /> Git
             </div>
-            <div className="absolute -right-6 bottom-[15%] px-4 py-2 rounded-full glass-panel text-xs font-semibold flex items-center gap-2 animate-float-slow">
-              <div className="w-2 h-2 rounded-full bg-accent" /> Grafana
-            </div>
-            <div className="absolute left-[10%] top-[8%] px-4 py-2 rounded-full glass-panel text-xs font-semibold flex items-center gap-2 animate-float-slower">
-              <div className="w-2 h-2 rounded-full bg-secondary" /> Prometheus
-            </div>
-            <div className="absolute -left-10 bottom-[50%] px-4 py-2 rounded-full glass-panel text-xs font-semibold flex items-center gap-2 animate-float-slow">
-              <div className="w-2 h-2 rounded-full bg-tertiary" /> Nginx
-            </div>
-            <div className="absolute right-[8%] bottom-[8%] px-4 py-2 rounded-full glass-panel text-xs font-semibold flex items-center gap-2 animate-float-slower">
-              <div className="w-2 h-2 rounded-full bg-accent" /> TypeScript
-            </div>
+
           </motion.div>
         </div>
       </div>

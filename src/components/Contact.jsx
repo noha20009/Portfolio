@@ -1,42 +1,23 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Download, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, MapPin, Download, Send, CheckCircle2 } from 'lucide-react';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import Reveal from './Reveal';
 
-const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT;
-
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const [status, setStatus] = useState('idle');
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!FORMSPREE_ENDPOINT) {
-      setStatus('error');
-      return;
-    }
-
-    setStatus('submitting');
-    try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setStatus('success');
-        setForm({ name: '', email: '', message: '' });
-      } else {
-        setStatus('error');
-      }
-    } catch {
-      setStatus('error');
-    }
+    const subject = encodeURIComponent(`Contact depuis le portfolio - ${form.name}`);
+    const body = encodeURIComponent(`Nom: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
+    window.location.href = `mailto:machkourinouhayla@gmail.com?subject=${subject}&body=${body}`;
+    setStatus('success');
+    setForm({ name: '', email: '', message: '' });
   };
 
   return (
@@ -104,8 +85,7 @@ const Contact = () => {
                 </div>
                 <a
                   href="/cv/nouhayla_Machkouri_CV.pdf"
-                  target="_blank"
-                  rel="noreferrer"
+                  download="nouhayla_Machkouri_CV.pdf"
                   className="inline-flex items-center gap-2 px-6 py-2.5 bg-accent text-white rounded-lg text-xs font-semibold uppercase tracking-wide hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/20 active:scale-95 self-start"
                 >
                   <Download size={16} /> Mon CV complet
@@ -155,32 +135,15 @@ const Contact = () => {
 
                 {status === 'success' && (
                   <div className="flex items-center gap-2 text-sm font-medium text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-3">
-                    <CheckCircle2 size={18} /> Votre message a bien été envoyé ! Merci.
-                  </div>
-                )}
-                {status === 'error' && (
-                  <div className="flex items-center gap-2 text-sm font-medium text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
-                    <AlertCircle size={18} />
-                    {FORMSPREE_ENDPOINT
-                      ? "Une erreur est survenue. Veuillez réessayer."
-                      : "Le formulaire n'est pas configuré. Contactez-moi par email : machkourinouhayla@gmail.com"}
+                    <CheckCircle2 size={18} /> Votre client email s'est ouvert avec votre message !
                   </div>
                 )}
 
                 <button
                   type="submit"
-                  disabled={status === 'submitting'}
-                  className="inline-flex items-center justify-center gap-2 bg-accent text-white py-3 px-6 rounded text-xs font-semibold uppercase tracking-wider hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/20 active:scale-95 self-start disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
+                  className="inline-flex items-center justify-center gap-2 bg-accent text-white py-3 px-6 rounded text-xs font-semibold uppercase tracking-wider hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/20 active:scale-95 self-start"
                 >
-                  {status === 'submitting' ? (
-                    <>
-                      <Loader2 size={14} className="animate-spin" /> Envoi…
-                    </>
-                  ) : (
-                    <>
-                      Envoyer <Send size={14} />
-                    </>
-                  )}
+                  Envoyer <Send size={14} />
                 </button>
               </form>
             </div>

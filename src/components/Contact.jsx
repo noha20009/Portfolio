@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Download, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, MapPin, Download, Send, CheckCircle2 } from 'lucide-react';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import Reveal from './Reveal';
 
-const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+const EMAIL = 'machkourinouhayla@gmail.com';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -13,24 +13,13 @@ const Contact = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus('submitting');
-    try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setStatus('success');
-        setForm({ name: '', email: '', message: '' });
-      } else {
-        setStatus('error');
-      }
-    } catch {
-      setStatus('error');
-    }
+    const subject = encodeURIComponent(`Contact depuis le portfolio - ${form.name}`);
+    const body = encodeURIComponent(`Nom: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}&su=${subject}&body=${body}`, '_blank');
+    setStatus('success');
+    setForm({ name: '', email: '', message: '' });
   };
 
   return (
@@ -148,29 +137,15 @@ const Contact = () => {
 
                 {status === 'success' && (
                   <div className="flex items-center gap-2 text-sm font-medium text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-3">
-                    <CheckCircle2 size={18} /> Message envoyé avec succès ! Merci.
-                  </div>
-                )}
-                {status === 'error' && (
-                  <div className="flex items-center gap-2 text-sm font-medium text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
-                    <AlertCircle size={18} /> Une erreur est survenue. Veuillez réessayer ou contactez-moi par email.
+                    <CheckCircle2 size={18} /> Gmail s'est ouvert avec votre message !
                   </div>
                 )}
 
                 <button
                   type="submit"
-                  disabled={status === 'submitting'}
-                  className="inline-flex items-center justify-center gap-2 bg-accent text-white py-3 px-6 rounded text-xs font-semibold uppercase tracking-wider hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/20 active:scale-95 self-start disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
+                  className="inline-flex items-center justify-center gap-2 bg-accent text-white py-3 px-6 rounded text-xs font-semibold uppercase tracking-wider hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/20 active:scale-95 self-start"
                 >
-                  {status === 'submitting' ? (
-                    <>
-                      <Loader2 size={14} className="animate-spin" /> Envoi…
-                    </>
-                  ) : (
-                    <>
-                      Envoyer <Send size={14} />
-                    </>
-                  )}
+                  Envoyer <Send size={14} />
                 </button>
               </form>
             </div>

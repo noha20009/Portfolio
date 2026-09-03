@@ -31,7 +31,9 @@ const Footer = () => {
               <FaGithub size={16} /> GitHub
             </a>
             <a
-              href="mailto:machkourinouhayla@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=machkourinouhayla@gmail.com"
+              target="_blank"
+              rel="noreferrer"
               className="flex items-center gap-1.5 text-on-surface-variant hover:text-accent transition-colors text-sm font-medium"
             >
               <Mail size={16} /> Mail

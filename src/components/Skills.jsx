@@ -23,7 +23,7 @@ const Skills = () => {
     {
       title: 'DevOps',
       icon: <Wrench className="text-accent" size={32} />,
-      skills: ['Git & GitHub', 'Docker', 'CI/CD', 'Postman', 'Maven'],
+      skills: ['Git & GitHub', 'Docker', 'CI/CD', 'Postman', 'Maven', 'Grafana', 'Prometheus', 'Loki', 'Nginx'],
     },
     {
       title: 'Conception',

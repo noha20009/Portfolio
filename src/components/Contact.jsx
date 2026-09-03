@@ -3,7 +3,7 @@ import { Mail, MapPin, Download, Send, Loader2, CheckCircle2, AlertCircle } from
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import Reveal from './Reveal';
 
-const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xyeyjppn';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });

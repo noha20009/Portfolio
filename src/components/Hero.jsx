@@ -51,9 +51,8 @@ const Hero = () => {
             </motion.h2>
 
             <motion.p variants={item} className="text-base md:text-lg text-on-surface-variant max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-              Titulaire d'une Licence en Ingénierie Électronique et formée chez Simplon,
-              je conçois des architectures applicatives robustes avec <span className="font-semibold text-on-surface">Spring Boot</span> et <span className="font-semibold text-on-surface">React</span>.
-              À la recherche d'une opportunité (Stage, CDI, Freelance).
+              Je transforme des idées en applications robustes et scalables — du backend <span className="font-semibold text-on-surface">Java/Spring Boot</span> au frontend <span className="font-semibold text-on-surface">React</span>, en passant par <span className="font-semibold text-on-surface">Docker</span> et l'observabilité (<span className="font-semibold text-on-surface">Grafana, Prometheus</span>).
+              Du prototype au déploiement, je livre des projets complets et maintenables.
             </motion.p>
 
             <motion.div variants={item} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">

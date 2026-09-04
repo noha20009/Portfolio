@@ -100,9 +100,9 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-teal-100/40 to-surface-container-low" />
               <div className="absolute w-64 h-64 bg-red-200/20 rounded-full blur-3xl -top-10 -right-10" />
               <div className="absolute w-64 h-64 bg-teal-200/30 rounded-full blur-3xl -bottom-10 -left-10" />
-              <div className="w-3/4 h-3/4 rounded-full border border-glass-border border-dashed animate-ring-rotate flex items-center justify-center opacity-50">
-                <div className="w-3/4 h-3/4 rounded-full border border-glass-border animate-ring-rotate-reverse flex items-center justify-center">
-                  <img src="/photo/hero.png" alt="Nouhayla Machkouri" className="w-28 h-28 rounded-full object-cover" />
+              <div className="w-3/4 h-3/4 rounded-full border border-glass-border border-dashed animate-ring-rotate flex items-center justify-center">
+                <div className="w-3/4 h-3/4 rounded-full border border-glass-border animate-ring-rotate-reverse flex items-center justify-center overflow-hidden">
+                  <img src="/photo/hero.png" alt="Nouhayla Machkouri" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>

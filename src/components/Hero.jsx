@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, ArrowRight, Download, ChevronDown, Terminal } from 'lucide-react';
+import { Mail, ArrowRight, Download, ChevronDown } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import TypeWriter from './lab/TypeWriter';
@@ -102,7 +102,7 @@ const Hero = () => {
               <div className="absolute w-64 h-64 bg-teal-200/30 rounded-full blur-3xl -bottom-10 -left-10" />
               <div className="w-3/4 h-3/4 rounded-full border border-glass-border border-dashed animate-ring-rotate flex items-center justify-center opacity-50">
                 <div className="w-3/4 h-3/4 rounded-full border border-glass-border animate-ring-rotate-reverse flex items-center justify-center">
-                  <Terminal className="text-tertiary/40" size={56} />
+                  <img src="/photo/hero.png" alt="Nouhayla Machkouri" className="w-28 h-28 rounded-full object-cover" />
                 </div>
               </div>
             </div>

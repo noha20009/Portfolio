@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ArrowUpRight, Boxes, TrendingUp } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Boxes, CalendarCheck2, TrendingUp } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import Reveal from './Reveal';
 
@@ -41,6 +41,30 @@ const Projects = () => {
   };
 
   const projects = [
+    {
+      title: 'LeaveFlow',
+      type: 'Gestion des congés (API REST + Frontend)',
+      icon: <CalendarCheck2 className="text-accent" size={14} />,
+      description:
+        "Système de gestion des congés et absences pour PME : demandes de congé, soldes automatiques, validation par le responsable, notifications et calendrier collectif. API Spring Boot sécurisée par rôle et frontend React conteneurisés avec Docker Compose.",
+      tech: [
+        'Java 17',
+        'Spring Boot 3',
+        'Spring Security (JWT)',
+        'Spring Data JPA',
+        'Flyway',
+        'MySQL',
+        'Swagger',
+        'React 18',
+        'React Query',
+        'Vite',
+        'Tailwind CSS',
+        'Docker',
+        'Nginx',
+      ],
+      github: 'https://github.com/ENAA-School-Student/LeaveFlow-Backend',
+      image: '/photo/leaveFlow.png',
+    },
     {
       title: 'Système Gestion Médicale',
       type: 'Application Spring Boot',
@@ -138,8 +162,8 @@ const Projects = () => {
           </article>
         </Reveal>
 
-        {/* Remaining 3 projects on the same line */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Remaining projects in a 2x2 grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <Reveal key={project.title} delay={index * 0.08}>
               <article className="glass-card card-shine rounded-[2rem] overflow-hidden flex flex-col group h-full">

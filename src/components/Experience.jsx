@@ -5,19 +5,43 @@ import Reveal from './Reveal';
 const timeline = [
   {
     icon: <Briefcase size={20} />,
+    date: '09/26 – Présent',
+    title: 'Développeuse Web Full Stack',
+    place: 'TranMarhaba',
+    desc: "Participation au développement et à la maintenance d'applications web internes : conception de composants front-end et d'API back-end, intégration continue, travail en équipe selon la méthodologie Agile. Prise en charge complète du cycle de développement (back-end, front-end, tests et déploiement) sur cinq projets : gestion des formations et attestations (Python), application ETL (extraction/nettoyage/transformation des données), application JMP (planification de déplacements avec calcul automatique des distances et durées, déployée sur les postes des collègues), application de gestion de flotte et suivi des pneus (architecture en couches, BDD relationnelle), et API REST Node.js/Express + React pour la gestion de flotte et suivi des pneus (transactions MySQL atomiques, RBAC JWT, alertes d'usure et d'échéances, import Excel, 33 tests Jest, déploiement Docker ou installation Electron).",
+    tags: ['Python', 'Node.js', 'Express', 'React', 'JavaScript', 'Java', 'Spring Security (JWT)', 'MySQL', 'Git', 'Docker', 'Electron', 'Jest', 'Agile'],
+  },
+  {
+    icon: <Briefcase size={20} />,
     date: '2024 - 2025',
-    title: 'Développeuse Full Stack',
+    title: 'Développeuse Full Stack Java',
     place: 'Simplon Maghreb - Béni Mellal',
-    desc: "Formation intensive centrée sur la création d'applications d'entreprise. Apprentissage approfondi de l'écosystème Java/Spring Boot, création d'API REST sécurisées, et développement d'interfaces modernes avec React.",
-    tags: ['Java', 'Spring Boot', 'React'],
+    desc: "Formation intensive et certifiante centrée sur la création d'applications d'entreprise. Apprentissage approfondi de l'écosystème Java/Spring Boot, création d'API REST sécurisées (JWT), développement d'interfaces modernes avec React, et déploiement avec Docker. Projets réalisés : LogiTrack, LeaveFlow, FenPay, XTrade et la plateforme e-commerce LUXEMART.",
+    tags: ['Java', 'Spring Boot', 'React', 'Docker', 'JWT'],
   },
   {
     icon: <GraduationCap size={20} />,
     date: '2022 - 2023',
     title: 'Licence Ingénierie Électronique et Télécommunications',
     place: 'Faculté des Sciences et Techniques - Béni Mellal',
-    desc: 'Acquisition de solides bases scientifiques et techniques, modélisation de systèmes, et première approche de la programmation structurée (C++).',
-    tags: ['Électronique', 'Télécom', 'C++'],
+    desc: 'Acquisition de solides bases scientifiques et techniques, modélisation de systèmes, et première approche de la programmation structurée (C++). Projets académiques : système de gestion de stock et application de suivi médical.',
+    tags: ['Électronique', 'Télécom', 'C++', 'UML'],
+  },
+  {
+    icon: <Briefcase size={20} />,
+    date: '2021 - 2022',
+    title: 'Stage de Développement Web',
+    place: 'Entreprise locale - Béni Mellal',
+    desc: 'Participation au développement et à la maintenance d\'applications web internes : création d\'interfaces utilisateur, intégration de formulaires, et support aux équipes techniques.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
+  },
+  {
+    icon: <GraduationCap size={20} />,
+    date: '2019 - 2022',
+    title: 'Baccalauréat Sciences Techniques',
+    place: 'Lycée Technique - Béni Mellal',
+    desc: 'Spécialité sciences et technologies de l\'industrie et du développement durable. Première initiation aux algorithmes et à la logique de programmation.',
+    tags: ['STI2D', 'Algorithmes', 'Physique'],
   },
 ];
 

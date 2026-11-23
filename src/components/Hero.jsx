@@ -53,6 +53,7 @@ const Hero = () => {
             <motion.p variants={item} className="text-base md:text-lg text-on-surface-variant max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
               Je transforme des idées en applications robustes et scalables — du backend <span className="font-semibold text-on-surface">Java/Spring Boot</span> au frontend <span className="font-semibold text-on-surface">React</span>, en passant par <span className="font-semibold text-on-surface">Docker</span> et l'observabilité (<span className="font-semibold text-on-surface">Grafana, Prometheus</span>).
               Du prototype au déploiement, je livre des projets complets et maintenables.
+              <span className="mt-4 inline-block font-semibold text-accent block">Actuellement à la recherche de nouvelles opportunités — disponible pour rejoindre votre équipe.</span>
             </motion.p>
 
             <motion.div variants={item} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">

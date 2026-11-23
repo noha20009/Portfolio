@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ArrowUpRight, Boxes, CalendarCheck2, TrendingUp } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Boxes, CalendarCheck2, ShoppingCart, TrendingUp } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import Reveal from './Reveal';
 
@@ -105,6 +105,37 @@ const Projects = () => {
       github: 'https://github.com/noha20009/XTrade',
       image: '/photo/XTrade.png',
     },
+    {
+      title: 'LUXEMART',
+      type: 'E-commerce (Front React + Back Spring Boot)',
+      icon: <ShoppingCart className="text-accent" size={14} />,
+      description:
+        'Plateforme e-commerce complète : catalogue produits avec filtres et pagination, panier persistant, checkout avec réservation de stock et calcul TVA / livraison, paiement (Stripe / mode simulé), wishlist, avis clients et back-office administrateur (CRUD produits, catégories, commandes, upload d’images). Authentification JWT, observabilité et déploiement Docker multi-conteneurs.',
+      tech: [
+        'Java 17',
+        'Spring Boot 3',
+        'Spring Security (JWT)',
+        'Spring Data JPA',
+        'Flyway',
+        'MySQL',
+        'H2',
+        'Swagger / OpenAPI',
+        'Actuator',
+        'React 18',
+        'TypeScript',
+        'Vite',
+        'Tailwind CSS',
+        'React Router',
+        'Axios',
+        'Docker',
+        'docker-compose',
+        'Nginx',
+        'GitHub Actions',
+        'Stripe',
+      ],
+      github: 'https://github.com/ENAA-School-Student/E-commerce_Projet.git',
+      image: '/photo/luxemart.png',
+    },
   ];
 
   return (
@@ -125,6 +156,9 @@ const Projects = () => {
                 src={featured.image}
                 alt={`${featured.title} Image`}
                 className="w-full h-full object-contain p-8 transform group-hover:scale-110 transition-transform duration-700"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
               />
             </div>
             <div className="p-10 w-full md:w-1/2 flex flex-col justify-center border-l border-white/20">
@@ -172,6 +206,9 @@ const Projects = () => {
                     src={project.image}
                     alt={`${project.title} Image`}
                     className="w-full h-full object-contain p-5 transform group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">

@@ -85,7 +85,7 @@ const About = () => {
             </div>
             <h3 className="text-2xl font-bold text-on-surface">Prête pour l'action</h3>
             <p className="text-on-surface-variant max-w-2xl">
-              Aujourd'hui, je suis prête à mettre mes compétences au service d'une équipe dynamique. Je recherche des défis stimulants où je pourrai contribuer à des projets innovants tout en continuant à apprendre et à grandir professionnellement.
+              Aujourd'hui, je suis prête à mettre mes compétences au service d'une équipe dynamique. <span className="font-semibold text-accent">Je suis activement à la recherche de nouvelles opportunités</span> en tant que développeuse Full Stack Java. Je recherche des défis stimulants où je pourrai contribuer à des projets innovants tout en continuant à apprendre et à grandir professionnellement.
             </p>
             <a
               href="#contact"

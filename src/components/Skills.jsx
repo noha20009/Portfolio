@@ -8,27 +8,27 @@ const Skills = () => {
       title: 'Back-End',
       icon: <Server className="text-accent" size={32} />,
       className: 'md:col-span-2',
-      skills: ['Java 17', 'Java EE', 'Spring Boot', 'Spring MVC', 'Spring Security (JWT)', 'API REST', 'Hibernate'],
+      skills: ['Java 17', 'Java EE', 'Spring Boot', 'Spring MVC', 'Spring Security (JWT)', 'API REST', 'Hibernate', 'Node.js', 'Python', 'Spring Cloud', 'JavaFX'],
     },
     {
       title: 'Front-End',
       icon: <Layout className="text-accent" size={32} />,
-      skills: ['React.js', 'Tailwind CSS', 'HTML5', 'CSS3', 'JavaScript', 'Bootstrap'],
+      skills: ['React.js', 'React 19', 'TypeScript', 'Tailwind CSS', 'HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'Redux Toolkit', 'Next.js', 'Electron'],
     },
     {
       title: 'BDD',
       icon: <Database className="text-accent" size={32} />,
-      skills: ['MySQL', 'SQL', 'Spring Data JPA'],
+      skills: ['MySQL', 'SQL', 'Spring Data JPA', 'PostgreSQL', 'MongoDB', 'Redis'],
     },
     {
       title: 'DevOps',
       icon: <Wrench className="text-accent" size={32} />,
-      skills: ['Git & GitHub', 'Docker', 'CI/CD', 'Postman', 'Maven', 'Grafana', 'Prometheus', 'Loki', 'Nginx'],
+      skills: ['Git & GitHub', 'Docker', 'CI/CD', 'Postman', 'Maven', 'Grafana', 'Prometheus', 'Loki', 'Nginx', 'Kubernetes', 'Jenkins', 'AWS', 'Azure'],
     },
     {
-      title: 'Conception',
+      title: 'Conception & Méthode',
       icon: <PenTool className="text-accent" size={32} />,
-      skills: ['UML', 'Figma', 'Approche Agile', 'C++', 'OOP'],
+      skills: ['UML', 'Figma', 'Scrum', 'Kanban', 'Design Thinking', 'Jira', 'Approche Agile', 'C++', 'OOP'],
     },
   ];
 

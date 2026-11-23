@@ -8,38 +8,6 @@ const TechChip = ({ label }) => (
 );
 
 const Projects = () => {
-  const featured = {
-    title: 'LogiTrack',
-    type: 'Gestion logistique (API REST + Frontend)',
-    icon: <Boxes className="text-accent" size={20} />,
-    description:
-      "Application de gestion logistique : API REST sécurisée (Spring Boot + Spring Security + JWT) et frontend React 19. Gestion des clients, produits, commandes et utilisateurs avec contrôle d'accès par rôles (ADMIN, MANAGER, AGENT), tableau de bord adapté et observabilité complète.",
-    tech: [
-      'Java 17',
-      'Spring Boot 3',
-      'Spring Security (JWT)',
-      'Spring Data JPA',
-      'MapStruct',
-      'MySQL',
-      'Swagger',
-      'React 19',
-      'Vite',
-      'React Router',
-      'Axios',
-      'React Hook Form',
-      'Yup',
-      'MUI',
-      'Docker',
-      'Nginx',
-      'Prometheus',
-      'Grafana',
-      'OpenFeign',
-      'Resilience4j',
-    ],
-    github: 'https://github.com/noha20009/projet-logitrack',
-    image: '/photo/logitrack.png',
-  };
-
   const projects = [
     {
       title: 'LeaveFlow',
@@ -136,6 +104,37 @@ const Projects = () => {
       github: 'https://github.com/ENAA-School-Student/E-commerce_Projet.git',
       image: '/photo/luxemart.png',
     },
+    {
+      title: 'LogiTrack',
+      type: 'Gestion logistique (API REST + Frontend)',
+      icon: <Boxes className="text-accent" size={14} />,
+      description:
+        "Application de gestion logistique : API REST sécurisée (Spring Boot + Spring Security + JWT) et frontend React 19. Gestion des clients, produits, commandes et utilisateurs avec contrôle d'accès par rôles (ADMIN, MANAGER, AGENT), tableau de bord adapté et observabilité complète.",
+      tech: [
+        'Java 17',
+        'Spring Boot 3',
+        'Spring Security (JWT)',
+        'Spring Data JPA',
+        'MapStruct',
+        'MySQL',
+        'Swagger',
+        'React 19',
+        'Vite',
+        'React Router',
+        'Axios',
+        'React Hook Form',
+        'Yup',
+        'MUI',
+        'Docker',
+        'Nginx',
+        'Prometheus',
+        'Grafana',
+        'OpenFeign',
+        'Resilience4j',
+      ],
+      github: 'https://github.com/noha20009/projet-logitrack',
+      image: '/photo/logitrack.png',
+    },
   ];
 
   return (
@@ -148,55 +147,7 @@ const Projects = () => {
           <div className="w-16 h-1 bg-accent rounded-full shadow-[0_0_10px_rgba(255,0,0,0.5)]" />
         </Reveal>
 
-        {/* Featured project: LogiTrack (full width, like at the start) */}
-        <Reveal>
-          <article className="glass-card card-shine rounded-[2rem] overflow-hidden flex flex-col md:flex-row group mb-8">
-            <div className="w-full md:w-1/2 aspect-square md:aspect-auto overflow-hidden relative bg-white/40">
-              <img
-                src={featured.image}
-                alt={`${featured.title} Image`}
-                className="w-full h-full object-contain p-8 transform group-hover:scale-110 transition-transform duration-700"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
-            </div>
-            <div className="p-10 w-full md:w-1/2 flex flex-col justify-center border-l border-white/20">
-              <div className="flex items-center gap-2 mb-4">
-                {featured.icon}
-                <span className="text-xs font-semibold text-accent uppercase tracking-widest">{featured.type}</span>
-              </div>
-              <h3 className="text-2xl font-bold text-on-surface mb-4 font-headline">{featured.title}</h3>
-              <p className="text-sm text-on-surface-variant mb-6">{featured.description}</p>
-              <div className="flex flex-wrap gap-2 mb-8">
-                {featured.tech.map((t) => (
-                  <TechChip key={t} label={t} />
-                ))}
-              </div>
-              <div className="mt-auto flex items-center gap-6">
-                <a
-                  href={featured.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-semibold text-accent hover:text-red-700 transition-colors"
-                >
-                  Voir le code
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </a>
-                <a
-                  href={featured.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-semibold text-on-surface-variant hover:text-accent transition-colors"
-                >
-                  <FaGithub size={16} /> GitHub
-                </a>
-              </div>
-            </div>
-          </article>
-        </Reveal>
-
-        {/* Remaining projects in a 2x2 grid */}
+        {/* All projects in a 2x2 grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <Reveal key={project.title} delay={index * 0.08}>

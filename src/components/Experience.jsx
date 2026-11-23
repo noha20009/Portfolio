@@ -27,22 +27,6 @@ const timeline = [
     desc: 'Acquisition de solides bases scientifiques et techniques, modélisation de systèmes, et première approche de la programmation structurée (C++). Projets académiques : système de gestion de stock et application de suivi médical.',
     tags: ['Électronique', 'Télécom', 'C++', 'UML'],
   },
-  {
-    icon: <Briefcase size={20} />,
-    date: '2021 - 2022',
-    title: 'Stage de Développement Web',
-    place: 'Entreprise locale - Béni Mellal',
-    desc: 'Participation au développement et à la maintenance d\'applications web internes : création d\'interfaces utilisateur, intégration de formulaires, et support aux équipes techniques.',
-    tags: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
-  },
-  {
-    icon: <GraduationCap size={20} />,
-    date: '2019 - 2022',
-    title: 'Baccalauréat Sciences Techniques',
-    place: 'Lycée Technique - Béni Mellal',
-    desc: 'Spécialité sciences et technologies de l\'industrie et du développement durable. Première initiation aux algorithmes et à la logique de programmation.',
-    tags: ['STI2D', 'Algorithmes', 'Physique'],
-  },
 ];
 
 const Experience = () => {
